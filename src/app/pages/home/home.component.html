@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drinks</title>
+  </head>
+  <body style="background-color: #a7e6d7">
+    <div
+      style="
+        padding: 10px 10px;
+        background-color: black;
+        border-radius: 0 0 10px 10px;
+        position: sticky;
+        top: 0;
+        margin-bottom: 30px;
+        cursor: pointer;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+      "
+    >
+      <h1 style="color: white" [routerLink]="'/home/'">Drinks</h1>
+      <button
+        [routerLink]="'/orders/'"
+        class="btn btn-outline-light mb-3"
+        style="margin-left: auto"
+      >
+        Carrello
+      </button>
+    </div>
+
+    <div class="row" style="z-index: 0">
+      <h2 style="text-align: center; padding-bottom: 10px">
+        Drink in primo piano
+      </h2>
+      <div
+        class="col-auto py-2 justify-content-evenly"
+        style="margin: auto; width: 80%"
+      >
+        <div class="card" style="width: 14rem; margin: auto">
+          <img
+            class="card-img-top"
+            [src]="
+              featureCocktail.strDrinkThumb ? featureCocktail.strDrinkThumb : ''
+            "
+            alt="Card image cap"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{ featureCocktail.strDrink }}</h5>
+            <p class="card-text" style="font-size: 13px">
+              {{ featureCocktail.strCategory }}
+            </p>
+            <button
+              [routerLink]="'/drink/' + featureCocktail.idDrink"
+              class="btn btn-primary"
+            >
+              Dettagli
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" style="z-index: 0">
+      <form class="form-inline my-2 my-lg-0 row justify-content-center">
+        <div class="col-1" style="margin: 20px 0 10px 0">
+          <button
+            class="btn btn-outline-success mb-3"
+            type="submit"
+            [routerLink]="'/search/'"
+          >
+            Cerca
+          </button>
+        </div>
+      </form>
+
+      <nav>
+        <ul
+          class="pagination pagination-md"
+          style="justify-content: center; align-items: center"
+        >
+          <li
+            class="page-item"
+            role="button"
+            [class.active]="letter === firstLetter"
+            *ngFor="let letter of letters"
+          >
+            <a class="page-link" (click)="changeFirstLetter(letter)">
+              {{ letter }}
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div style="text-align: center" *ngIf="drinks">
+        <p>{{ drinks.length }} elementi</p>
+      </div>
+
+      <div style="text-align: center" *ngIf="!drinks">
+        <p>0 elementi</p>
+        <p>Non ci sono cocktail che iniziano con questa lettera</p>
+      </div>
+
+      <div
+        class="row"
+        style="justify-content: center; align-items: center"
+        *ngIf="drinks"
+      >
+        <div class="col-auto p-2" *ngFor="let drink of drinks">
+          <div class="card" style="width: 14rem; margin-bottom: 40px">
+            <img
+              class="card-img-top"
+              [src]="drink.strDrinkThumb ? drink.strDrinkThumb : ''"
+              alt="Card image cap"
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{ drink.strDrink }}</h5>
+              <p class="card-text" style="font-size: 13px">
+                {{ drink.strCategory }}
+              </p>
+              <button
+                [routerLink]="'/drink/' + drink.idDrink"
+                class="btn btn-primary"
+              >
+                Dettagli
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drinks</title>
+  </head>
+  <body style="background-color: #a7e6d7">
+    <div class="container">
+      <div class="card bg-white text-white">
+        <img
+          class="card-img"
+          [src]="data.strDrinkThumb ? data.strDrinkThumb : ''"
+          alt="Card image"
+        />
+        <div class="card-img-overlay">
+          <div id="backgroundText">
+            <h5 class="card-title">{{ data.strDrink }}</h5>
+            <p class="card-text">{{ data.strInstructionsIT }}</p>
+            <p class="card-text"><strong>Ingrdienti</strong></p>
+            <ul>
+              <li
+                class="card-text"
+                *ngFor="let ingredient of drinkIngredients"
+                [routerLink]="'/ingredient/' + ingredient"
+                style="cursor: pointer"
+              >
+                {{ ingredient }}
+              </li>
+            </ul>
+            <p class="card-text">
+              <strong>Categoria</strong>: {{ data.strCategory }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

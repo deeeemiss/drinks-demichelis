@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drinks</title>
+  </head>
+  <body style="background-color: #a7e6d7">
+    <div
+      style="
+        padding: 10px 10px;
+        background-color: black;
+        border-radius: 0 0 10px 10px;
+        position: sticky;
+        top: 0;
+        margin-bottom: 30px;
+        cursor: pointer;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+      "
+    >
+      <h1 style="color: white" [routerLink]="'/home/'">Drinks</h1>
+    </div>
+
+    <div class="container justify-content-center" style="z-index: 0">
+      <form class="form-inline my-2 my-lg-0 row" (ngSubmit)="handleSubmit()">
+        <div class="col-11">
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Ricerca tramite nome"
+            aria-label="Search"
+            name="search"
+            [(ngModel)]="searchDrink"
+            style="margin-bottom: 20px"
+          />
+        </div>
+        <div class="col-1">
+          <button
+            class="btn btn-outline-success my-2 my-sm-0"
+            type="submit"
+            style="margin-bottom: 20px"
+          >
+            Cerca
+          </button>
+        </div>
+      </form>
+
+      <div
+        class="alert alert-warning"
+        role="alert"
+        *ngIf="idSelected.length < 2"
+      >
+        Minimo 2 elementi
+      </div>
+
+      <div class="d-flex flex-row">
+        <div
+          class="col-6"
+          style="justify-content: flex-start; align-items: center"
+          *ngIf="drinksData"
+        >
+          <ul
+            class="list-group"
+            style="cursor: pointer"
+            *ngFor="let drink of drinksData"
+          >
+            <li
+              class="list-group-item"
+              style="margin-bottom: 5px"
+              (click)="handleSelect(drink)"
+              [class.list-group-item-primary]="drink.checked === true"
+              *ngIf="idSelected.length <= 5 || drink.checked"
+            >
+              <img
+                src="../../../assets/bag-plus.svg"
+                alt="add-to-bag"
+                style="margin: -5px 5px 0 -2px"
+                *ngIf="!drink.checked"
+              />
+              <img
+                src="../../../assets/bag-check-fill.svg"
+                alt="added-to-bag"
+                style="margin: -5px 5px 0 -2px"
+                *ngIf="drink.checked"
+              />
+              {{ drink.strDrink }}
+              <p style="font-size: 0.8em; margin-top: 10px">
+                <strong>Categoria:</strong> {{ drink.strCategory }}
+              </p>
+              <p style="font-size: 0.8em; margin-top: -5px; margin-bottom: 0">
+                <strong>Bicchiere:</strong> {{ drink.strGlass }}
+              </p>
+            </li>
+          </ul>
+        </div>
+
+        <div
+          class="col-6 border rounded"
+          style="margin: 0 10px 10px 10px"
+          *ngIf="idSelected.length > 0"
+        >
+          <div
+            style="
+              display: flex;
+              margin: 20px 30px 0 30px;
+              justify-content: space-between;
+            "
+          >
+            <h2>Carrello</h2>
+            <button (click)="handleClear()" class="btn btn-outline-dark mb-3">
+              Cancella tutto
+            </button>
+          </div>
+          <div
+            class="d-flex"
+            style="
+              justify-content: center;
+              align-items: flex-start;
+              flex-wrap: wrap;
+            "
+            *ngIf="drinkCart"
+          >
+            <div *ngFor="let drink of drinkCart">
+              <div class="card" style="width: 10rem; margin: 0 10px 10px 10px">
+                <img
+                  class="card-img-top"
+                  [src]="drink.strDrinkThumb ? drink.strDrinkThumb : ''"
+                  alt="Card image cap"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">{{ drink.strDrink }}</h5>
+                  <p class="card-text" style="font-size: 13px">
+                    {{ drink.strCategory }}
+                  </p>
+                  <button class="btn btn-primary" (click)="select(drink)">
+                    Rimuovi
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

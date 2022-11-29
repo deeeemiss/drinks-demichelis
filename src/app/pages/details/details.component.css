@@ -1,0 +1,17 @@
+#backgroundText {
+  background-color: white;
+  padding: 10px;
+  border-radius: 0 0 10px 10px;
+  margin: 455px -17px -17px -17px;
+  color: black;
+  border: 1px solid rgb(210, 210, 210);
+}
+
+.container {
+  width: 500px;
+  margin-top: 20px;
+}
+
+.card-text {
+  font-size: 0.8em;
+}

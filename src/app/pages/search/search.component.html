@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drinks</title>
+  </head>
+  <body style="background-color: #a7e6d7">
+    <div
+      style="
+        padding: 10px 10px;
+        background-color: black;
+        border-radius: 0 0 10px 10px;
+        position: sticky;
+        top: 0;
+        margin-bottom: 30px;
+        cursor: pointer;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+      "
+    >
+      <h1 style="color: white" [routerLink]="'/home/'">Drinks</h1>
+      <button
+        [routerLink]="'/orders/'"
+        class="btn btn-outline-light mb-3"
+        style="margin-left: auto"
+      >
+        Carrello
+      </button>
+    </div>
+
+    <div class="container justify-content-center" style="z-index: 0">
+      <form class="form-inline my-2 my-lg-0 row" (ngSubmit)="handleSubmit()">
+        <div class="col-11">
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Ricerca tramite nome"
+            aria-label="Search"
+            name="search"
+            [(ngModel)]="searchDrink"
+            style="margin-bottom: 20px"
+          />
+        </div>
+        <div class="col-1">
+          <button
+            class="btn btn-outline-success my-2 my-sm-0"
+            type="submit"
+            style="margin-bottom: 20px"
+          >
+            Cerca
+          </button>
+        </div>
+      </form>
+
+      <form
+        class="form-inline my-2 my-lg-0 row"
+        (ngSubmit)="handleSubmitIngredient()"
+      >
+        <div class="col-11">
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Ricerca tramite ingrediente"
+            aria-label="Search"
+            name="search"
+            [(ngModel)]="searchDrinkIngredient"
+            style="margin-bottom: 20px"
+          />
+        </div>
+        <div class="col-1">
+          <button
+            class="btn btn-outline-success my-2 my-sm-0"
+            type="submit"
+            style="margin-bottom: 20px"
+          >
+            Cerca
+          </button>
+        </div>
+      </form>
+
+      <div
+        class="row"
+        style="justify-content: center; align-items: center"
+        *ngIf="drinksData"
+      >
+        <div class="col-auto py-2" *ngFor="let drink of drinksData">
+          <div class="card" style="width: 14rem; margin-bottom: 40px">
+            <img
+              class="card-img-top"
+              [src]="drink.strDrinkThumb ? drink.strDrinkThumb : ''"
+              alt="Card image cap"
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{ drink.strDrink }}</h5>
+              <p class="card-text" style="font-size: 13px">
+                {{ drink.strCategory }}
+              </p>
+              <button
+                [routerLink]="'/drink/' + drink.idDrink"
+                class="btn btn-primary"
+              >
+                Dettagli
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
