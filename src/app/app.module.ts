@@ -11,6 +11,8 @@ import { Details } from './pages/details/details.component';
 import { SearchComponent } from './pages/search/search.component';
 import { IngredientComponent } from './pages/ingredient/ingredient.component';
 import { OrdersComponent } from './pages/orders/orders.component';
+import { BlockUIModule } from 'ng-block-ui';
+import { BlockUIHttpModule } from 'ng-block-ui/http';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { OrdersComponent } from './pages/orders/orders.component';
     NgbModule,
     FormsModule,
     HttpClientModule,
+    BlockUIModule.forRoot(),
+    BlockUIHttpModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],
