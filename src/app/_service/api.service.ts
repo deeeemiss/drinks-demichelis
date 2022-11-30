@@ -35,7 +35,7 @@ export class ApiService {
     );
   }
 
-  searchCoctailByIngredient(name: string) {
+  searchCocktailByIngredient(name: string) {
     return this.httpClient.get(
       'https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + name
     );

@@ -17,7 +17,7 @@ export class IngredientComponent implements OnInit {
   ngOnInit(): void {
     this.ingredient = this.route.snapshot.paramMap.get('ingredient')!;
     this.apiService
-      .searchCoctailByIngredient(this.ingredient)
+      .searchCocktailByIngredient(this.ingredient)
       .subscribe((data: any) => {
         this.drinks = data.drinks;
         this.ingredientImg = `https://www.thecocktaildb.com/images/ingredients/${this.ingredient}.png`;
