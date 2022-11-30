@@ -15,16 +15,15 @@
         position: sticky;
         top: 0;
         margin-bottom: 30px;
-        cursor: pointer;
         z-index: 100;
         display: flex;
         align-items: center;
       "
     >
-      <h1 style="color: white" [routerLink]="'/home/'">Drinks</h1>
+      <h1 style="color: white; cursor: default">Drinks</h1>
       <button
         [routerLink]="'/orders/'"
-        class="btn btn-outline-light mb-3"
+        class="btn btn-outline-light"
         style="margin-left: auto"
       >
         Carrello

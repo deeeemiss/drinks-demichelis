@@ -15,13 +15,14 @@
         position: sticky;
         top: 0;
         margin-bottom: 30px;
-        cursor: pointer;
         z-index: 100;
         display: flex;
         align-items: center;
       "
     >
-      <h1 style="color: white" [routerLink]="'/home/'">Drinks</h1>
+      <h1 style="color: white; cursor: pointer" [routerLink]="'/home/'">
+        Drinks
+      </h1>
     </div>
 
     <div class="container justify-content-center" style="z-index: 0">
@@ -99,7 +100,11 @@
 
         <div
           class="col-6 border rounded"
-          style="margin: 0 10px 10px 10px"
+          style="
+            margin: 0 10px 10px 10px;
+            background-color: white;
+            height: fit-content;
+          "
           *ngIf="idSelected.length > 0"
         >
           <div
